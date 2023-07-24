@@ -39,10 +39,61 @@
 							<section class="post">
 								<header class="major">
 									<h2><u>SQL Project</u></h2>
-									<h4>To be updated</h4>
+									<p>Tabular Reporting on H.R Employee Attribiton. <br /> Dataset obtained from Kaggle.</p>
 								</header>
 
+								<div class = "box">
+									<p><b>Summary:</b> <br />
+									Given a comphrehensive but singular dataset, we wrote SQL queries to generate tabular reports on specific subsets of this data.
+									Namely, reports involving the new hires who quit within 1 year.
+									<br /> These queries were written with the following agenda in mind: <br /> </p>
+									<p>
+									1. Generate a table illustrating the employee information for those who quit within 1 year <br />
+									2. Show the workplace survey results of the "New Hires" who quit <br />
+									3. Compare the above results to the company average results to the same questions <br />
+									4. Generate table(s) to examine the relationship between employment history and attrition rate
+									</p>
+									</div>
+
 								<!-- Text stuff -->
+									<p>Inital CSV:
+										<a href="#" class="image main"><img src="images/rawcsvp1.PNG" alt="" /></a></small>
+										<a href="#" class="image main"><img src="images/rawcsvp2.PNG" alt="" /></a></small> <hr>
+									</p>
+								<p> 1. <code>SELECT DISTINCT * FROM hr.table WHERE TotalWorkingYears <= 1;</code>
+									<a href="#" class="image main"><img src="images/test3.PNG" alt="" /></a></small>
+								<hr> </p>
+
+								<p> 2. <code> SELECT Attrition, Department, JobRole, TotalWorkingYears, <br />
+									JobSatisfaction, JobInvolvement, EnvironmentSatisfaction, 
+									RelationshipSatisfaction <br />
+									FROM hr.table WHERE TotalWorkingYears <= 1 AND Attrition = "Yes" ORDER BY Department; </code>
+									<a href="#" class="image main"><img src="images/test1.PNG" alt="" /></a></small>
+								<hr> </p>
+
+								<p> 3. <code> SELECT Attrition, Department, JobRole, TotalWorkingYears, <br /> 
+									JobSatisfaction, JobInvolvement, EnvironmentSatisfaction, 
+									RelationshipSatisfaction, <br />
+									(SELECT AVG(JobSatisfaction) FROM hr.table) AS "Avg Job JobSatisfaction", <br/>
+									(SELECT AVG(JobInvolvement) FROM hr.table) AS "Avg Job Involvement", <br />
+									(SELECT AVG(EnvironmentSatisfaction) FROM hr.table) AS "Avg Environment Satisfaction" <br />
+									FROM hr.table WHERE TotalWorkingYears <= 1 AND Attrition = "Yes" ORDER BY Department; </code>
+									<a href="#" class="image main"><img src="images/test.PNG" alt="" /></a></small>
+									<hr>
+								</p>
+
+								<p>4 a.
+									<code>SELECT Attrition, Age, Department, JobRole, TotalWorkingYears, NumCompaniesWorked <br />
+									FROM hr.table ORDER BY NumCompaniesWorked LIMIT 2000; </code> <br />
+									We noticed that the returned result table matched MySQL's pre-determined row limit of 1000 rows, hence we include the <code>LIMIT</code>
+									clause to avoid any loss in data.
+									<a href="#" class="image main"><img src="images/test2.PNG" alt="" /></a></small>
+									<hr>
+								</p>
+
+
+
+									
 
 
 				<!-- Copyright -->
