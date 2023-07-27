@@ -35,10 +35,10 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li class="active"><a href="index.html">Used Cars</a></li>
-							<li><a href="generic.html">NYC AirBnB </a></li>
-							<li><a href="elements.html">HR Analytics 1 </a></li>
-							<li><a href="python.html">HR Analytics 2 </a></li>
+							<li class="active"><a href="index.html">NYC AirBnb</a></li>
+							<li><a href="generic.html">Used Cars </a></li>
+							<li><a href="elements.html">HR Analytics </a></li>
+							<li><a href="python.html">TBD </a></li>
 
 					</nav>
 
@@ -49,21 +49,31 @@
 							<article class="post featured">
 								<header class="major">
 									
-									<h2><a href="#"><u>Excel Project</u> <br /></a></h2>
+									
+									<h2><a href="#"><u>Power BI Project</u> <br /></a></h2>
 									<h6>*SQL as well</h6>
-									<p>A Case Study on 24,199 Used Vehicles For Sale Within 25 km Proximity of Downtown Toronto. <br /> </p> 
-										 Dataset Obtained From Kaggle.<br /></p>
-										 <h3>Case Study At A Glance | Cleaning & Analysis <br /></h3>
+								</a></h2>
+								<p>A Dashboard Report on the AirBnB Listings in New York City. <br />
+									 Dataset Obtained From Kaggle.
 									<html>
 									<body>
 										 <div class = "box">
-												<p><b>Summary:</b> <br />
-												Identified a subset dataset to match vehicle necessities for a roofing company <br />
-												 Cleaned the subset through Excel <br />
-												 Created Pivot charts illustrating market share by body type of vehicle <br />
-												 Created standard deviation graph and used SQL queries to identify significant percentages<br />
-												 Wrote a SQL query to return the % of listings that can be purchased 
-												 and visualized it alongside average price</p>
+											<div class = "box">
+												<p><b>Actionable Takeaways:</b> <br />
+												Most common listings are private spaces within Manhattan or Brooklyn<br />
+												Staten Island shared rooms followed by private lofts in Brooklyn are the most booked within the year <br />
+												Most popular listings are under $100 USD a night and will have 12-14 reviews left per month <br /> 
+												Most popular listings are close in proximity to the airport and explicitly state "JFK" in their title <br /></p>
+												
+													<p><u>Key Takeaway: If you're an looking to host an AirBnB in New York City, aim to list a private space under $100 per night
+												near JFK airport while explicitly stating that close proximity in the title.</u></p>
+											</div>
+											</div>
+												<p>
+													Raw csv: 
+													<a href="#" class="image main"><img src="images/nycraw.PNG" alt="" /></a>
+													 <a href="#" class="image main"><img src="images/PowerBI.PNG" alt="" /></a>
+													</p>
 											
 										
 										
@@ -71,113 +81,7 @@
 									</body>
 									</html>
 								</header>
-								<h4><u>Objects of Interest: Market Share, Gas Usage, Average Price, and Purchasing Power <br />from the perspective of an interested roofing company</u> <br /> </h4>
-							Here is the inital .csv, but where do we begin? <br />
-							<a href="#" class="image main"><img src="images/rawdata.PNG" alt="" /></a></small>
-
-							<p>Well, roofing companies want lots of space. So a good start is to clean and analyze our data for larger vehicles.
-							That being said how do we define larger vehicles? We have total of 31 unique body types. Since the number of unique body types is relatively small,
-						  we can manually research. We define this set as the <em>larger vehicles</em>. </p>
-						  <a href="#" class="image main"><img src="images/LargerVehiclesSet.PNG" alt="" /></a>
-						  <hr>
-						<p>Since we want to focus only on these defined larger vehicles, let's create a subset of the inital data with which
-							we can then clean and begin to analyze... <br />
-							<p>
-							 1. <em>CTRL F</em> and <em>CTRL -</em> to delete all the rows which hold body types
-							 that aren't part of our larger vehicles set.<br />
-								2. Remove the columns of "Passengers" and "Doors" since they aren't very relevant to our interests. <br />
-								3. Remove any rows with <em>NULL</em> "Kilometers" or "Price" since they are crucial pieces of information.<br />
-								4. Gas and Gasoline are the same thing; <em>CTRL H</em> to replace all the "Gasoline" with "Gas" <br />
-								5. Removed duplicates within the remaining columns <br />
-								6. Removed blank spaces through TRIM() <br />
-								7. Used Find & Replace, SUBSTIUTE(), and "Text to Columns" to convert the columns representing gas usage in the city and on the highway into
-								a single digit numerical data type with which we can analyze (the previous format was not analytics friendly)
-
-							<p>With the subset data somewhat cleaned, we then some pivot charts to gain some insights:<br />
-
-								<hr>
-
-								<a href="#" class="image main"><img src="images/PercentageShare.PNG" alt="" /></a>
-								<a href="#" class="image main"><img src="images/CountListings.PNG" alt="" /></a>
-
-								<div class = "box">
-								<p> Right away, we see that there are two leading body types which dominate the market: "Truck" and "Crew Cab"
-									with a staggering 52.13% and 34.84%, respectively. Another way to see this disparity, group together all the larger vehicles outside of
-									 the top 2 and they together only make up 13.03% of the listings.</p>
-
-							<p>
-									Furthermore, even if we strip away percentages from the question, we see that "Truck" stands at the top with exactly 956 listings,
-									 still relatively far ahead of "Crew Cabs" following behind with 639;
-									yet the third highest body type, "Regular Cab", is practically a rare sighting with a listing total of 67.
-							</p>
-
-							<p>It is worth noting that not only does this analysis give us valuable insight into the current market of what we consider
-								used larger vehicles, but also that any body type class not named "Truck" or "Crew Cab" is not worth analyzing independently in this case study simply due to
-								the low number of data regarding them.
-							</div>
-
-							<p>Since we cleaned up the formatting regarding the gas usage columns, we could now begin to analyze them. At inital glance,
-							all the data values in the <em>highway</em> column appeared to be relatively close in value, in particular with the body type <em>trucks</em>. We decided
-							 to explore the validity of this speculation by building a normal distribution graph.
-							 </p>
-
-							 <p>
-								After calculating the mean, standard deviation, as well as normal deviation of all 550 data points, we plot all of our resulting values.
-								Furthermore, we then write the following query within MySQL to return the percentage of trucks whose gas usage is within one standard 
-								deviation of the mean.
-
-								<a href="#" class="image main"><img src="images/SDQuery.PNG" alt="" /></a>
-
-							 </p>
-							 
-							 Again, the following analysis would not be possible with
-							the inital format of the <em>City</em> and <em>Highway</em> columns.
-
-							<a href="#" class="image main"><img src="images/GasUsageHighway.PNG" alt="" /></a>
-
-							<div class = "box">
-							The mean of gas consumption per 100km within the body type of <em>trucks</em> is approximately 10.89L with an approximate standard deviation of 1.16L.
-							Furthermore, within one standard deviation of our mean, we see that 84.6% actually fall within this interval. Meaning, the inital speculation that
-							various gas consumptions on the highway were "relatively close in value" indeed possessed some real merit. 
-
-							</div>
-
-							<p> Lastly, we consider our budget of $60,000 and build a visualization through Excel & SQL to represent our purchasing power in the current market. 
-								Recall that we have a relatively low count of body types aside from <em> Crew Cabs </em> and <em>Trucks</em>, meaning every 
-								reported percentage after not named <em>Crew Cab</em> or <em>Truck</em> should be taken with a large grain of salt.
-
-								<p>
-									We use the following query to calculate the percentages of vehicles by body type we can purchase with $60,000: 
-									<a href="#" class="image main"><img src="images/PercentQuery.PNG" alt="" /></a>
-								</p>
-
-								<p>And then graph all of our resulting percentages along the mean price, again grouped by body type:</p>
-
-								<a href="#" class="image main"><img src="images/AveragePrice_PurchasingPower.PNG" alt="" /></a>
-								<ul class="actions special">
-
-								<div class = "box">
-									<p> Immeditately, we see that the average price of Crew Cab's far exceed the rest of the body types. Most notably, they exceed Truck's
-										 average price of $54,121.41 by nearly $15,000. Furthermore, through this visualization we gain the insight that with our current
-										budget of $60,000, we can only consider a small portion of the Crew Cabs, specifically 22.6% of the total listings. Meanwhile for Trucks,
-										our purchasing power looks stronger with us having the budget to consider 55.1% of the total truck listings. With the remaining body types
-										of low count value, really the only thing we can say is that our budget seems to cover the majority of the rare listings
-										 of vehicles not named <em>Crew Cab</em>
-									 	or <em>Truck</em>.</p>
 								
-								
-							</p>
-							</p>
-
-
-
-								</p>
-
-
-							</p>
-
-			
-							</article>
 
 
 
