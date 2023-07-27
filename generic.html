@@ -52,12 +52,11 @@
 								 <div class = "box">
 									<div class = "box">
 										<p><b>Summary:</b> <br />
-										Identified a subset dataset to match vehicle necessities for a roofing company <br />
-										 Cleaned the subset through Excel <br />
+										Identified an actionable dataset subset to match vehicle necessities for a roofing company <br />
+										 Cleaned/Wrangled the data through Excel <br />
 										 Created Pivot charts illustrating market share by body type of vehicle <br />
 										 Created standard deviation graph and used SQL queries to identify significant percentages<br />
-										 Wrote a SQL query to return the % of listings that can be purchased 
-										 and visualized it alongside average price</p>
+										 Wrote queries to return the % of listings by body type within budget and created vizualiations for it</p>
 									
 								
 									</div>
@@ -77,15 +76,13 @@
 				<p>Since we want to focus only on these defined larger vehicles, let's create a subset of the inital data with which
 					we can then clean and begin to analyze... <br />
 					<p>
-					 1. <em>CTRL F</em> and <em>CTRL -</em> to delete all the rows which hold body types
-					 that aren't part of our larger vehicles set.<br />
-						2. Remove the columns of "Passengers" and "Doors" since they aren't very relevant to our interests. <br />
+
+						1. Delete the rows which held body types that were not part of our larger vehicle set <br />
+						2. Removed any duplicates through Excel's built in duplicate removal feature<br />
 						3. Remove any rows with <em>NULL</em> "Kilometers" or "Price" since they are crucial pieces of information.<br />
-						4. Gas and Gasoline are the same thing; <em>CTRL H</em> to replace all the "Gasoline" with "Gas" <br />
-						5. Removed duplicates within the remaining columns <br />
-						6. Removed blank spaces through TRIM() <br />
-						7. Used Find & Replace, SUBSTIUTE(), and "Text to Columns" to convert the columns representing gas usage in the city and on the highway into
-						a single digit numerical data type with which we can analyze (the previous format was not analytics friendly)
+						4. Reformatted the data (e.g. Gas and Gasoline are the same thing; replace all the "Gasoline" with "Gas") <br />
+						5. Changed the format and datatype of the columns representing gas usage in the city and the highway, making the column values suitable for analyses <br />
+				
 
 					<p>With the subset data somewhat cleaned, we then some pivot charts to gain some insights:<br />
 
@@ -110,15 +107,11 @@
 						the low number of data regarding them.
 					</div>
 
-					<p>Since we cleaned up the formatting regarding the gas usage columns, we could now begin to analyze them. At inital glance,
+					<p> At inital glance,
 					all the data values in the <em>highway</em> column appeared to be relatively close in value, in particular with the body type <em>trucks</em>. We decided
 					 to explore the validity of this speculation by building a normal distribution graph.
-					 </p>
-
-					 <p>
-						After calculating the mean, standard deviation, as well as normal deviation of all 550 data points, we plot all of our resulting values.
 						Furthermore, we then write the following query within MySQL to return the percentage of trucks whose gas usage is within one standard 
-						deviation of the mean.
+						deviation of the mean and then create a vizualiations depicting this percentage within our graph.
 
 						<a href="#" class="image main"><img src="images/SDQuery.PNG" alt="" /></a>
 
