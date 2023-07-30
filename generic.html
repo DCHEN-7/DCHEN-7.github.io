@@ -69,7 +69,7 @@
 
 					<p>Well, roofing companies want lots of space. So a good start is to clean and analyze our data for larger vehicles.
 					That being said how do we define larger vehicles? We have total of 31 unique body types. Since the number of unique body types is relatively small,
-				  we can manually research. We define this set as the <em>larger vehicles</em>. </p>
+				  we can manually research which vehicles are suitable. We define this set as the <em>larger vehicles</em>. </p>
 				  <a href="#" class="image main"><img src="images/LargerVehiclesSet.PNG" alt="" /></a>
 				  <hr>
 				<p>Since we want to focus only on these defined larger vehicles, let's create a subset of the inital data with which
@@ -78,13 +78,12 @@
 
 						1. Delete the rows which held body types that were not part of our larger vehicle set <br />
 						2. Removed any duplicates through Excel's built in duplicate removal feature<br />
-						3. Remove any rows with <em>NULL</em> "Kilometers" or "Price" since they are crucial pieces of information.<br />
-						4. Reformatted the data (e.g. Gas and Gasoline are the same thing; replace all the "Gasoline" with "Gas") <br />
-						5. Changed the format and datatype of the columns representing gas usage in the city and the highway, making the column values suitable for analyses <br />
+						3. Remove any rows with <em>NULL</em> "Kilometers", "Price", "Body Type" since they are crucial pieces of information.<br />
 						<hr>
 				
 
-					<p>With the subset data cleaned to a reasonable degree, we can then generate the following dashboard:<br />
+					<p>With the subset data cleaned to a reasonable degree, we can then generate this dashboard focusing on market share, 
+						average price, and the purchasing power of our budget, all categorized by body type:<br />
 						<a href="#" class="image main"><img src="images/ExcelCompleteDashboard.PNG" alt="" /></a>
 						<h6>*The purchasing power percentages were calculated through MySQL</h6>
 
@@ -115,17 +114,10 @@
 								of such low count value, the only thing we can really say is that our budget seems to cover the majority of the rare listings
 								 of vehicles not named "Crew Cab"
 								 or "Truck".</p>
+								 </div>
 						
 						
-					</p>
-					</p>
-
-
-
-						</p>
-
-
-					</p>
+					<p> Next we will analyze how the used car market looks based on the recorded odometer value.</p>
 
 	
 					</article>
