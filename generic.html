@@ -100,9 +100,12 @@
 					<p>With the subset data cleaned to a reasonable degree, we can then generate this dashboard focusing on market share, 
 						average price, and the purchasing power of our budget, all categorized by body type:<br />
 						<a href="#" class="image main"><img src="images/ExcelCompleteDashboard.PNG" alt="" /></a>
-						<h6>*The purchasing power percentages were calculated through MySQL</h6>
-
-						<hr>
+						<h6>*The purchasing power percentages were calculated within MySQL through CTEs:</h6>
+						WITH cte_filtered AS (SELECT Body_Type, Price FROM used_cars_truck.price_data WHERE price <= 60000), <br />
+						cte_count AS (Select Body_Type, COUNT(Body_Type) AS "ListingsUnder60000" from cte_filtered group by Body_Type), <br />
+						cteTotal AS (Select Body_Type, COUNT(Body_Type) AS "TotalListings" from used_cars_truck.price_data group by Body_Type) <br />
+						SELECT cte_count.Body_Type, cte_count.ListingsUnder60000, cteTotal.TotalListings, (ListingsUnder60000/TotalListings) AS "Percentage Within Budget" from cte_count join cteTotal on cte_count.Body_Type = cteTotal.Body_Type; <h6>*Terrible for efficiency but was a great SQL exercise</h6>
+						<hr> 
 
 						<div class = "box">
 						<p> We see that there are two leading body types which dominate the market: "Truck" and "Crew Cab"
